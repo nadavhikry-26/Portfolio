@@ -1,0 +1,1119 @@
+/* ============================================================
+   NADAV HIKRY — PORTFOLIO
+   Monochrome design system. Colors, type, and spacing all flow
+   from the custom properties below — edit here, not per-element.
+   ============================================================ */
+
+:root {
+  /* ---- Light (daytime default) ---- */
+  --bg: #F7F7F5;
+  --text: #1A1A1A;
+  --text-muted: #6A6A66;
+  --border: #E6E6E2;
+  --surface: #FFFFFF;
+  --frame-chrome: #16150F;
+  --pill-bg: #1A1A1A;
+  --pill-text: #F7F7F5;
+
+  /* ---- Type scale ---- */
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fs-hero: clamp(3.5rem, 11vw, 8.5rem);
+  --fs-h2: clamp(1.9rem, 4vw, 2.75rem);
+  --fs-h3: clamp(1.6rem, 3vw, 2.1rem);
+  --fs-body-lg: clamp(1.05rem, 1.6vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* ---- Layout ---- */
+  --measure: 68ch;
+  --page-margin: clamp(1.5rem, 5vw, 4rem);
+  --section-gap: clamp(5rem, 12vw, 9rem);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-theme: 0.6s;
+  --duration-reveal: 0.9s;
+}
+
+:root[data-theme="dark"] {
+  --bg: #111110;
+  --text: #F2F0EA;
+  --text-muted: #9C968A;
+  --border: #2A2926;
+  --surface: #171614;
+  --frame-chrome: #0B0B0A;
+  --pill-bg: #F2F0EA;
+  --pill-text: #171614;
+}
+
+/* ============ RESET ============ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--duration-theme) var(--ease), color var(--duration-theme) var(--ease);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+ul { margin: 0; padding: 0; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  z-index: 200;
+}
+.skip-link:focus { left: var(--page-margin); top: 1rem; }
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .hero__eyebrow {
+    animation: none;
+    background-position: 0% 0%;
+  }
+  .gallery-carousel__track { scroll-behavior: auto; }
+}
+
+/* ============ SHARED ============ */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 3rem;
+}
+
+main > section,
+.contact {
+  padding: 0 var(--page-margin);
+}
+
+/* Scroll-reveal: fade + gentle rise, one-shot */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--duration-reveal) var(--ease), transform var(--duration-reveal) var(--ease);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ============ NAV ============ */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--duration-theme) var(--ease), border-color var(--duration-theme) var(--ease);
+}
+.site-nav--scrolled {
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.site-nav__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.1rem var(--page-margin);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  transition: opacity 0.3s var(--ease);
+}
+.logo:hover { opacity: 0.7; }
+.logo__mark { font-size: 0.85em; line-height: 1; }
+
+.site-nav__links {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.site-nav__links a {
+  font-size: var(--fs-small);
+  font-weight: 400;
+  color: var(--text-muted);
+  transition: color 0.3s var(--ease);
+}
+.site-nav__links a:hover { color: var(--text); }
+
+.site-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text);
+  flex-shrink: 0;
+  transition: border-color var(--duration-theme) var(--ease);
+}
+.theme-toggle:hover { border-color: var(--text-muted); }
+.theme-toggle__icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.theme-toggle__icon--sun { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-toggle__icon--moon { opacity: 0; transform: rotate(-40deg) scale(0.6); }
+:root[data-theme="dark"] .theme-toggle__icon--sun { opacity: 0; transform: rotate(40deg) scale(0.6); }
+:root[data-theme="dark"] .theme-toggle__icon--moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+.say-hi {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background-color var(--duration-theme) var(--ease), color var(--duration-theme) var(--ease);
+}
+.say-hi:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.hero__inner {
+  width: 100%;
+  padding: 2rem 0;
+}
+/* One deliberate exception to the monochrome system: a quiet animated
+   sheen on the "AI" eyebrow label, the same shorthand designers use to
+   signal AI without shouting it. Nowhere else on the site uses color. */
+.hero__eyebrow {
+  font-size: var(--fs-body-lg);
+  margin-bottom: 1.25rem;
+  display: inline-block;
+  background: linear-gradient(
+    100deg,
+    var(--text-muted) 0%,
+    var(--text-muted) 38%,
+    #7C8FFF 47%,
+    #B98CFF 53%,
+    var(--text-muted) 62%,
+    var(--text-muted) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: ai-shimmer 5s ease-in-out infinite;
+}
+@keyframes ai-shimmer {
+  to { background-position: -200% 0%; }
+}
+.hero__headline {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0;
+  white-space: nowrap;
+}
+.hero__tagline {
+  margin-top: 1.25rem;
+  font-size: var(--fs-body-lg);
+  color: var(--text-muted);
+  max-width: 40ch;
+}
+.hero__actions {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: var(--fs-body);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease),
+    background-color var(--duration-theme) var(--ease), color var(--duration-theme) var(--ease),
+    border-color var(--duration-theme) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary {
+  background: var(--pill-bg);
+  color: var(--pill-text);
+}
+.btn--primary:hover { opacity: 0.85; }
+.btn--primary svg { transition: transform 0.3s var(--ease); }
+.btn--primary:hover svg { transform: translateY(2px); }
+.btn--secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn--secondary:hover { border-color: var(--text-muted); }
+
+/* ============ WORK ============ */
+.work {
+  max-width: 1400px;
+  margin: 0 auto;
+  /* Tighter than the usual section-gap: the hero is already full-height,
+     so it doesn't also need a full section-gap of empty space after it. */
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: var(--section-gap);
+}
+.work__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 44px;
+}
+.work__header-left .section-label { margin: 0 0 1rem; }
+.work__heading {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
+}
+.work-card { display: block; }
+.work-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.work-card__meta-logo {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+/* The Riverside mark is exported white-on-transparent; invert it in light
+   mode so it stays visible, and drop the invert back in dark mode where
+   white already reads correctly against the page. */
+.work-card__meta-logo--riverside {
+  filter: invert(1);
+  transition: filter var(--duration-theme) var(--ease);
+}
+:root[data-theme="dark"] .work-card__meta-logo--riverside {
+  filter: none;
+}
+.work-card__title {
+  margin-top: 0.5rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.work-card__hook {
+  margin-top: 0.5rem;
+  font-size: var(--fs-body);
+  color: var(--text-muted);
+}
+.work-card__view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+.work-card:hover .work-card__view,
+.work-card:focus-visible .work-card__view {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Shared with project-detail pages. */
+.project__hook {
+  font-size: var(--fs-body-lg);
+  color: var(--text-muted);
+}
+
+/* Framed screenshots: a quiet "browser window" chrome around every image,
+   so raw slide exports read as intentional product shots. Also used as the
+   base media treatment for homepage work-cards (see .frame--cover below). */
+.frame {
+  position: relative;
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--frame-chrome);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.18);
+}
+.frame__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 16px;
+}
+.frame__bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(242, 240, 234, 0.22);
+}
+.frame__media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  background: var(--frame-chrome);
+}
+.frame__media img,
+.frame__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Cover cards (homepage Work teasers): borderless, no chrome bar —
+   the source image is shown in full, at its own natural proportions. */
+.frame--cover .frame__media {
+  /* Wider than the source image itself, so the matte shows generously
+     on the sides rather than just a thin inset border. */
+  aspect-ratio: 3 / 2;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+.frame--cover .frame__media img {
+  object-fit: contain;
+  border-radius: 12px;
+  transition: transform 0.5s var(--ease);
+}
+.work-card:hover .frame--cover .frame__media img,
+.work-card:focus-visible .frame--cover .frame__media img {
+  transform: scale(1.045);
+}
+
+/* ============ PROJECT DETAIL ============ */
+.project-detail {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 44px;
+  padding-bottom: var(--section-gap);
+}
+.project-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 44px;
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.project-detail__back svg { transition: transform 0.3s var(--ease); }
+.project-detail__back:hover { color: var(--text); }
+.project-detail__back:hover svg { transform: translateX(-3px); }
+
+.project-detail__intro {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+.project-detail__header { max-width: 62ch; }
+.project-detail__title {
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  margin: 1rem 0 1.25rem;
+}
+.project-detail__header .work-card__meta { margin-top: 0; }
+.project-detail__copy {
+  margin-top: 1.75rem;
+  font-size: var(--fs-body-lg);
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 66ch;
+}
+
+.project-detail__media {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+}
+.project-detail__media .frame { width: 100%; }
+.project-detail__media .frame__media { aspect-ratio: 16 / 9; }
+
+.project-detail__next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(4rem, 9vw, 7rem);
+  padding: 2.25rem clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.project-detail__next:hover { border-color: var(--text-muted); transform: translateY(-2px); }
+.project-detail__next-label {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.project-detail__next-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.project-detail__next-title svg { transition: transform 0.3s var(--ease); }
+.project-detail__next:hover .project-detail__next-title svg { transform: translateX(4px); }
+
+@media (max-width: 700px) {
+  .project-detail__next { flex-direction: column; align-items: flex-start; }
+}
+
+/* Frameless variant: no box, just a left-aligned label + title, generous
+   space around it instead of a border. Arrow-shift-on-hover is inherited
+   from .project-detail__next above; only the box chrome is stripped here. */
+.project-detail__next--plain {
+  display: block;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin-top: clamp(4rem, 9vw, 7rem);
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+.project-detail__next--plain:hover { transform: none; }
+.project-detail__next--plain .project-detail__next-label {
+  transition: color 0.3s var(--ease);
+}
+.project-detail__next--plain:hover .project-detail__next-label {
+  color: var(--text);
+}
+
+/* ---- Rich project-detail content: stats, prose sections, gallery ---- */
+/* "At a glance" sits beside the header text as its own column, divided by
+   a hairline — a compact facts panel rather than a full-width strip. */
+.project-detail__stats-panel {
+  border-left: 1px solid var(--border);
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+}
+.project-detail__stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.project-detail__stat-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+}
+.project-detail__stat-value {
+  font-size: var(--fs-body);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--text);
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .project-detail__intro { grid-template-columns: 1fr; }
+  .project-detail__stats-panel {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 2rem;
+    margin-top: 0.5rem;
+  }
+  .project-detail__stats { max-width: 420px; }
+}
+
+.project-detail__section {
+  max-width: 66ch;
+  margin-top: 60px;
+}
+.project-detail__section-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+}
+.project-detail__section-body {
+  font-size: var(--fs-body-lg);
+  line-height: 1.75;
+  color: var(--text);
+}
+.project-detail__section-body + .project-detail__section-body { margin-top: 1.25rem; }
+
+.solution-list {
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.solution-list li {
+  list-style: none;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+  font-size: var(--fs-body-lg);
+  line-height: 1.7;
+  color: var(--text);
+}
+.solution-list strong { font-weight: 700; }
+
+.project-detail__figure { margin-top: 60px; }
+/* Shared "browser window" screenshot treatment — matte on left/right/top
+   only, image flush to the bottom of the frame, cropped like a real
+   browser window rather than floating. Used by the main narrative figures
+   and the "closer look" gallery items alike. */
+.project-detail__figure .frame__media,
+.gallery-carousel__item .frame__media {
+  aspect-ratio: 16 / 9;
+  padding: 12px clamp(1.5rem, 3.5vw, 2.5rem) 0;
+}
+.project-detail__figure .frame__media img,
+.project-detail__figure .frame__media video,
+.gallery-carousel__item .frame__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Gallery frames double as lightbox triggers — reset the button chrome
+   back to how the plain .frame figure looked, plus a gentle hover/focus
+   cue so the click affordance reads clearly. */
+.gallery-carousel__trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+}
+.gallery-carousel__trigger .frame__media img { transition: transform 0.4s var(--ease); }
+.gallery-carousel__trigger:hover .frame__media img,
+.gallery-carousel__trigger:focus-visible .frame__media img {
+  transform: scale(1.03);
+}
+
+/* Placeholder media: a faint centered label inside the existing frame
+   chrome, standing in until real screenshots are dropped in. The frame
+   background is always dark regardless of theme, so a light, low-opacity
+   label reads correctly in both light and dark mode without an override. */
+.project-detail__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 120px;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(242, 240, 234, 0.3);
+}
+
+.project-gallery { margin-top: 60px; }
+.project-gallery__label { margin-bottom: 1rem; }
+.project-gallery__intro {
+  font-size: var(--fs-body-lg);
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin: 0 0 2.5rem;
+}
+
+/* Filmstrip carousel: every image is the same size, individually
+   scroll-snapped — two visible at a time, at a fixed size, with the exact
+   same gap between every pair regardless of the total item count (an odd
+   number of images just ends the strip, rather than leaving a mismatched
+   blank slot). Arrows/dots page by two; the track itself is a native
+   scroll-snap container so drag, swipe, and trackpad scroll all work too. */
+.gallery-carousel__track {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  scrollbar-width: none;
+}
+.gallery-carousel__track::-webkit-scrollbar { display: none; }
+.gallery-carousel__track--dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  cursor: grabbing;
+  user-select: none;
+}
+.gallery-carousel__item {
+  flex: 0 0 calc(50% - clamp(1.5rem, 3vw, 2.5rem) / 2);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.gallery-carousel__caption {
+  margin-top: 1.25rem;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+.gallery-carousel__caption strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.gallery-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+.gallery-carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text);
+  flex-shrink: 0;
+  transition: border-color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.gallery-carousel__arrow:hover:not(:disabled) { border-color: var(--text-muted); }
+.gallery-carousel__arrow:disabled { opacity: 0.3; cursor: default; }
+.gallery-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.gallery-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background-color 0.3s var(--ease), width 0.3s var(--ease);
+}
+.gallery-carousel__dot--active {
+  width: 22px;
+  background: var(--text);
+}
+
+@media (max-width: 700px) {
+  .gallery-carousel__item { flex-basis: 100%; }
+}
+
+/* ============ GALLERY LIGHTBOX ============ */
+/* A dedicated dark surface regardless of page theme — the same warm-black
+   used for browser-chrome frames (--frame-chrome), not a generic black
+   scrim, so it still reads as part of this site rather than a bolted-on
+   plugin. Text inside is fixed to the dark-mode palette values for the
+   same reason: it always sits on a dark surface, independent of whichever
+   theme the page itself is in. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease), visibility 0s linear 0.4s;
+}
+.lightbox--open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s var(--ease), visibility 0s linear 0s;
+}
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--frame-chrome) 94%, transparent);
+}
+.lightbox__stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 3vw, 2rem);
+  max-width: 100%;
+  max-height: 100%;
+  transform: translateY(14px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+}
+.lightbox--open .lightbox__stage {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.lightbox__figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+.lightbox__image {
+  display: block;
+  max-width: min(88vw, 1400px);
+  max-height: 74vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.55);
+}
+.lightbox__caption {
+  margin: 1.25rem 0 0;
+  max-width: 70ch;
+  text-align: center;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: #9C968A;
+}
+.lightbox__caption strong {
+  color: #F2F0EA;
+  font-weight: 700;
+}
+
+.lightbox__close,
+.lightbox__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 240, 234, 0.25);
+  color: #F2F0EA;
+  background: rgba(242, 240, 234, 0.06);
+  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.lightbox__close:hover,
+.lightbox__arrow:hover {
+  border-color: rgba(242, 240, 234, 0.5);
+  background: rgba(242, 240, 234, 0.12);
+}
+.lightbox__close:active,
+.lightbox__arrow:active { transform: scale(0.94); }
+.lightbox__close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+.lightbox__arrow {
+  width: 48px;
+  height: 48px;
+}
+
+@media (max-width: 760px) {
+  .lightbox { padding: 1.25rem; }
+  .lightbox__stage { flex-direction: column; }
+  .lightbox__arrow--prev,
+  .lightbox__arrow--next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lightbox__arrow--prev { left: 0.25rem; }
+  .lightbox__arrow--next { right: 0.25rem; }
+  .lightbox__image { max-width: 100%; max-height: 58vh; }
+}
+
+body.lightbox-lock { overflow: hidden; }
+
+/* ============ WRITING ============ */
+/* Full-bleed band (like .contact) rather than a max-width block, so the
+   surface color runs edge-to-edge; content stays inset via .writing__inner. */
+.writing {
+  background: var(--surface);
+  /* Zero horizontal padding here (overriding the generic main>section rule)
+     so the background bleeds full-width; .writing__inner carries the page
+     margin itself, combined with max-width the same way .work/.about do —
+     otherwise the two insets stack and this section drifts out of the
+     site's grid on wide viewports. */
+  padding: var(--section-gap) 0;
+  transition: background-color var(--duration-theme) var(--ease);
+}
+.writing__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--page-margin);
+}
+.writing-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: 2.5rem;
+  transition: opacity var(--duration-reveal) var(--ease),
+    transform var(--duration-reveal) var(--ease);
+}
+.writing-card__thumb {
+  flex-shrink: 0;
+  display: block;
+  width: min(420px, 40%);
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.writing-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.writing-card__text { flex: 1 1 auto; min-width: 0; }
+.writing-card__title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+.writing-card__blurb {
+  color: var(--text-muted);
+  font-size: var(--fs-body-lg);
+  max-width: 52ch;
+  margin-bottom: 1rem;
+}
+.writing-card__meta {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+.writing-card__external {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  transition: transform 0.3s var(--ease), background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.writing-card:hover .writing-card__external {
+  transform: translate(2px, -2px);
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* ============ ABOUT ============ */
+.about {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+.about__grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+.about__portrait {
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--frame-chrome);
+  border: 1px solid var(--border);
+}
+.about__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 46% 20%;
+  filter: grayscale(100%);
+  transition: filter 0.5s var(--ease);
+}
+.about__portrait:hover img {
+  filter: grayscale(0%);
+}
+.about__text p {
+  font-size: var(--fs-body-lg);
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 54ch;
+}
+.about__text p + p { margin-top: 1.5rem; }
+
+/* ============ CONTACT / FOOTER ============ */
+.contact {
+  padding-top: var(--section-gap);
+  padding-bottom: 3.5rem;
+  border-top: 1px solid var(--border);
+  /* Inverted from the page: black section in light mode, white in dark mode. */
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  transition: background-color var(--duration-theme) var(--ease), color var(--duration-theme) var(--ease);
+}
+.contact__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.contact__heading {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+}
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.contact__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 999px;
+  /* Buttons take over the roles .contact's own text/background normally
+     hold, since the section itself now sits in the pill-bg/pill-text pair. */
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background-color var(--duration-theme) var(--ease), color var(--duration-theme) var(--ease);
+}
+.contact__link:hover { opacity: 0.85; transform: translateY(-2px); }
+.contact__link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--text);
+  color: var(--bg);
+}
+.contact__link-icon svg { width: 13px; height: 13px; }
+.contact__credit {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: var(--fs-small);
+  color: color-mix(in srgb, var(--pill-text) 65%, transparent);
+}
+.contact__credit-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #D97757;
+  animation: credit-spin 3s linear infinite;
+}
+@keyframes credit-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact__credit-icon { animation: none; }
+}
+.contact__credit-sep { opacity: 0.5; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 860px) {
+  .work__grid { grid-template-columns: 1fr; }
+
+  .about__grid { grid-template-columns: 1fr; }
+  .about__portrait { max-width: 320px; }
+}
+
+@media (max-width: 560px) {
+  .site-nav__inner { padding: 1rem var(--page-margin); }
+  /* Force a clean two-row layout instead of letting logo, links, and
+     actions wrap unpredictably against each other. */
+  .logo { order: 1; }
+  .site-nav__actions { order: 2; }
+  .site-nav__links {
+    order: 3;
+    flex-basis: 100%;
+    gap: 1.1rem;
+    margin-top: 0.9rem;
+  }
+  .hero { min-height: 70vh; }
+  .writing-card { flex-direction: column; align-items: stretch; }
+  .writing-card__thumb { width: 100%; aspect-ratio: 16 / 9; }
+  .writing-card__external { align-self: flex-end; }
+}

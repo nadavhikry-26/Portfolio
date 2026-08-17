@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Riverside · Nadav Hikry</title>
+<meta name="description" content="Riverside: onboarding rebuilt around user intent. Product design case study by Nadav Hikry." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    var theme = saved;
+    if (theme !== "light" && theme !== "dark") {
+      var hour = new Date().getHours();
+      theme = (hour >= 7 && hour < 19) ? "light" : "dark";
+    }
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="index.html" class="logo" aria-label="Nadav Hikry home">
+      <span class="logo__mark" aria-hidden="true">✦</span> Nadav.
+    </a>
+
+    <nav class="site-nav__links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="site-nav__actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3Z"/>
+        </svg>
+      </button>
+      <a href="index.html#contact" class="say-hi"><span aria-hidden="true">👋</span>Let's talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="project-detail">
+    <a class="project-detail__back reveal" href="index.html#work">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M12 7H2M2 7l5-5M2 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      All projects
+    </a>
+
+    <div class="project-detail__intro">
+      <div class="project-detail__header">
+        <p class="work-card__meta reveal">
+          <img class="work-card__meta-logo work-card__meta-logo--riverside" src="images/riverside.png" alt="Riverside" />
+          · Product Design
+        </p>
+        <h1 class="project-detail__title reveal">Onboarding, rebuilt<br>around intent</h1>
+        <p class="project__hook reveal">A signup flow shaped around what each user came to do.</p>
+        <p class="project-detail__copy reveal">
+          Riverside is a platform for recording and editing studio-quality
+          video and podcasts. I redesigned its onboarding to focus on what
+          each new user actually came to do, and to get them to real value
+          faster.
+        </p>
+      </div>
+
+      <!-- AT A GLANCE -->
+      <div class="project-detail__stats-panel reveal">
+        <div class="project-detail__stats">
+          <div class="project-detail__stat">
+            <p class="project-detail__stat-label">Role</p>
+            <p class="project-detail__stat-value">Product Design</p>
+          </div>
+          <div class="project-detail__stat">
+            <p class="project-detail__stat-label">Type</p>
+            <p class="project-detail__stat-value">B2C · SaaS</p>
+          </div>
+          <div class="project-detail__stat">
+            <p class="project-detail__stat-label">Scope</p>
+            <p class="project-detail__stat-value">UX, UI, flow design, prototype</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE PROBLEM -->
+    <div class="project-detail__section reveal">
+      <h2 class="project-detail__section-title">The problem</h2>
+      <p class="project-detail__section-body">
+        Riverside's onboarding wasn't landing. Activation was low, sitting
+        at around 24%, and too many new users dropped off before reaching
+        the moment the product actually pays off, their first real
+        recording. The flow also treated everyone the same: a solo
+        podcaster, a team recording a webinar, and someone making short
+        marketing clips all got the same generic path, even though they
+        showed up for completely different reasons.
+      </p>
+    </div>
+
+    <!-- THE APPROACH -->
+    <div class="project-detail__section reveal">
+      <h2 class="project-detail__section-title">The approach</h2>
+      <p class="project-detail__section-body">
+        I rebuilt onboarding around a simple idea: different intent should
+        lead to a different flow. Instead of one path for everyone, the
+        experience starts by asking what the user wants to create, then
+        adapts. The whole flow was designed to keep people engaged, build
+        trust step by step, and give a visible sense of progress, so
+        reaching that first recording feels quick and obvious.
+      </p>
+    </div>
+
+    <figure class="frame project-detail__figure reveal">
+      <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="frame__media">
+        <img src="images/riverside%2001.png" alt="Riverside onboarding intent-selection screen asking what the user wants to create today." loading="lazy" />
+      </span>
+    </figure>
+
+    <!-- MADE FOR HOW YOU ACTUALLY WORK -->
+    <div class="project-detail__section reveal">
+      <h2 class="project-detail__section-title">Made for how you actually work</h2>
+      <p class="project-detail__section-body">
+        The redesign meets people where they are. Someone recording a
+        podcast, running a live stream, or making marketing clips each gets
+        a path shaped around that goal, not a one-size-fits-all setup.
+        Along the way, small touches build confidence: a clear studio
+        setup, sensible defaults, and a preview of what they're about to
+        make, so the product feels approachable from the very first screen.
+      </p>
+    </div>
+
+    <figure class="frame project-detail__figure reveal">
+      <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="frame__media">
+        <img src="images/riverside%2002.png" alt="Riverside studio setup screen with a workspace name and sensible defaults." loading="lazy" />
+      </span>
+    </figure>
+
+    <!-- A CLOSER LOOK -->
+    <div class="project-gallery reveal">
+      <p class="section-label project-gallery__label">A closer look</p>
+      <p class="project-gallery__intro">
+        A few more screens from the redesigned onboarding flow.
+      </p>
+
+      <div class="gallery-carousel" data-carousel>
+        <div class="gallery-carousel__track" data-carousel-track>
+
+          <div class="gallery-carousel__item" data-carousel-item>
+            <button type="button" class="frame gallery-carousel__trigger" data-lightbox-trigger>
+              <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="frame__media">
+                <img src="images/riverside%2003.png" alt="Riverside start screen with options to record video, record audio, edit videos, create magic clips, or generate show notes." loading="lazy" />
+              </span>
+            </button>
+            <p class="gallery-carousel__caption"><strong>Start with intent.</strong> Pick what you're here to create.</p>
+          </div>
+
+          <div class="gallery-carousel__item" data-carousel-item>
+            <button type="button" class="frame gallery-carousel__trigger" data-lightbox-trigger>
+              <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="frame__media">
+                <img src="images/riverside%2004.png" alt="Riverside recording view showing 4K high-quality recording with separate tracks per participant." loading="lazy" />
+              </span>
+            </button>
+            <p class="gallery-carousel__caption"><strong>Set up fast.</strong> Name your studio and go.</p>
+          </div>
+
+          <div class="gallery-carousel__item" data-carousel-item>
+            <button type="button" class="frame gallery-carousel__trigger" data-lightbox-trigger>
+              <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="frame__media">
+                <img src="images/riverside%2005.png" alt="Riverside onboarding attribution screen asking how the user heard about Riverside." loading="lazy" />
+              </span>
+            </button>
+            <p class="gallery-carousel__caption"><strong>Multiple ways in.</strong> Record, edit, or generate with AI.</p>
+          </div>
+
+          <div class="gallery-carousel__item" data-carousel-item>
+            <button type="button" class="frame gallery-carousel__trigger" data-lightbox-trigger>
+              <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="frame__media">
+                <img src="images/riverside%2006.png" alt="Riverside simplified start screen with start recording and edit content options." loading="lazy" />
+              </span>
+            </button>
+            <p class="gallery-carousel__caption"><strong>One last thing.</strong> A quick question before you're in.</p>
+          </div>
+
+        </div>
+
+        <div class="gallery-carousel__controls">
+          <button class="gallery-carousel__arrow" type="button" data-carousel-prev aria-label="Previous slide">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M12 7H2M2 7l5-5M2 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="gallery-carousel__dots" data-carousel-dots></div>
+          <button class="gallery-carousel__arrow" type="button" data-carousel-next aria-label="Next slide">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M9 2l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY LIGHTBOX -->
+    <div class="lightbox" id="gallery-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+      <div class="lightbox__backdrop" data-lightbox-backdrop></div>
+      <button type="button" class="lightbox__close" data-lightbox-close aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="lightbox__stage" data-lightbox-stage>
+        <button type="button" class="lightbox__arrow lightbox__arrow--prev" data-lightbox-prev aria-label="Previous image">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M11 4L5 9l6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <figure class="lightbox__figure">
+          <img class="lightbox__image" data-lightbox-image src="" alt="" />
+          <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+        </figure>
+        <button type="button" class="lightbox__arrow lightbox__arrow--next" data-lightbox-next aria-label="Next image">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M7 4l6 5-6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- THE RESULTS -->
+    <div class="project-detail__section reveal">
+      <h2 class="project-detail__section-title">The results</h2>
+      <p class="project-detail__section-body">
+        The redesigned onboarding was validated in an A/B test against the
+        old flow. The intent-based version lifted 7-day retention by 4.64%
+        and platform visits (7-14 days) by 7.02%, and drove more users to
+        subscribe, with 30-day subscription creation up 5.19% and average
+        MRR up 3.66%.
+      </p>
+    </div>
+
+    <figure class="frame project-detail__figure reveal">
+      <span class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="frame__media">
+        <img src="images/results.png" alt="A/B test results table showing retention, platform visits, subscription creation, and MRR lift for the intent-based onboarding flow." loading="lazy" />
+      </span>
+    </figure>
+
+    <a class="project-detail__next project-detail__next--plain reveal" href="sticklight-cloud.html">
+      <span>
+        <span class="project-detail__next-label">Next project</span>
+        <span class="project-detail__next-title">
+          Sticklight Cloud
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </span>
+    </a>
+  </section>
+</main>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<footer id="contact" class="contact">
+  <div class="contact__inner">
+    <h2 class="contact__heading reveal">Let's talk.</h2>
+    <div class="contact__links reveal">
+      <a class="contact__link" href="mailto:nadavhikry@gmail.com">
+        <span class="contact__link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/>
+            <polyline points="22 6 12 13 2 6"/>
+          </svg>
+        </span>
+        Email me
+      </a>
+      <a class="contact__link" href="https://www.linkedin.com/in/nadav-hikry-38568662/" target="_blank" rel="noopener">
+        <span class="contact__link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+          </svg>
+        </span>
+        LinkedIn
+      </a>
+    </div>
+    <p class="contact__credit">
+      <svg class="contact__credit-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(36 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(72 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(108 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(144 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(180 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(216 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(252 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(288 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(324 12 12)"/>
+      </svg>
+      Designed &amp; built with Claude Code.
+      <span class="contact__credit-sep" aria-hidden="true">|</span>
+      © <span id="year"></span> Nadav Hikry
+    </p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

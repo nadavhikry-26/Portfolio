@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nadav Hikry · Senior AI Product Designer</title>
+<meta name="description" content="Nadav Hikry is a Senior AI Product Designer based in Israel, currently Product Experience Lead at Elementor. Selected work in AI-native product design." />
+
+<!-- Fonts: Inter, two weights only (400 regular, 700 bold) per the site's type system -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<!--
+  Theme is decided before first paint to avoid a flash of the wrong theme:
+  1) an explicit visitor choice saved in localStorage wins,
+  2) otherwise fall back to local time of day (daytime = light, evening/night = dark).
+-->
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    var theme = saved;
+    if (theme !== "light" && theme !== "dark") {
+      var hour = new Date().getHours();
+      theme = (hour >= 7 && hour < 19) ? "light" : "dark";
+    }
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="#home" class="logo" aria-label="Nadav Hikry home">
+      <span class="logo__mark" aria-hidden="true">✦</span> Nadav.
+    </a>
+
+    <nav class="site-nav__links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="site-nav__actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3Z"/>
+        </svg>
+      </button>
+      <a href="#contact" class="say-hi"><span aria-hidden="true">👋</span>Let's talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow reveal">Senior AI Product Designer</p>
+      <h1 class="hero__headline reveal">Nadav Hikry</h1>
+      <p class="hero__tagline reveal">I make complex products feel simple.</p>
+      <div class="hero__actions reveal">
+        <a href="#work" class="btn btn--primary">
+          View my work
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v11M2 8l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#about" class="btn btn--secondary">About</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section id="work" class="work">
+    <div class="work__header reveal">
+      <div class="work__header-left">
+        <span class="section-label">Work</span>
+        <h2 class="work__heading">Selected work</h2>
+      </div>
+    </div>
+
+    <div class="work__grid">
+      <!-- Project 1: Sticklight Cloud -->
+      <a class="work-card reveal" href="sticklight-cloud.html">
+        <figure class="frame frame--cover">
+          <span class="frame__media">
+            <img src="images/Sticklightcloud-cover2.png" alt="Sticklight Cloud project overview showing deployment status, quick actions, and project wiring to Supabase and OpenAI." loading="lazy" />
+          </span>
+          <span class="work-card__view" aria-hidden="true">
+            View project
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M4 10 10 4M4.5 4h5.5v5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </figure>
+        <p class="work-card__meta">
+          <img class="work-card__meta-logo" src="images/elementor.png" alt="Elementor" />
+          · Product &amp; Design
+        </p>
+        <h3 class="work-card__title">Sticklight Cloud hosting for vibe coding</h3>
+        <p class="work-card__hook">Where do you host the app the AI just built for you?</p>
+      </a>
+
+      <!-- Project 2: Riverside -->
+      <a class="work-card reveal" href="riverside.html">
+        <figure class="frame frame--cover">
+          <span class="frame__media">
+            <img src="images/onboarding-cover2.png" alt="Riverside onboarding screen showing intent selection alongside a live recording preview." loading="lazy" />
+          </span>
+          <span class="work-card__view" aria-hidden="true">
+            View project
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M4 10 10 4M4.5 4h5.5v5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </figure>
+        <p class="work-card__meta">
+          <img class="work-card__meta-logo work-card__meta-logo--riverside" src="images/riverside.png" alt="Riverside" />
+          · Product Design
+        </p>
+        <h3 class="work-card__title">Onboarding, rebuilt around intent</h3>
+        <p class="work-card__hook">A signup flow shaped around what each user came to do.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ WRITING ============ -->
+  <section id="writing" class="writing">
+    <div class="writing__inner">
+      <h2 class="section-label reveal">Writing</h2>
+      <a class="writing-card reveal" href="https://ux.elementor.com/making-domain-search-work/" target="_blank" rel="noopener">
+        <span class="writing-card__thumb">
+          <img src="images/blog-post.png" alt="" loading="lazy" />
+        </span>
+        <div class="writing-card__text">
+          <h3 class="writing-card__title">Making Domain Search Work</h3>
+          <p class="writing-card__blurb">On designing the "domain taken" moment, and why AI should be timed, not first.</p>
+          <p class="writing-card__meta">Elementor UX · 4 min read</p>
+        </div>
+        <span class="writing-card__external" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3.5h6.5V10M12.2 3.8 3.5 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="about">
+    <h2 class="section-label reveal">About</h2>
+    <div class="about__grid">
+      <!-- PLACEHOLDER: portrait (swap for a cleaner headshot when ready) -->
+      <div class="about__portrait reveal">
+        <img src="images/nadav-image3.jpg" alt="Portrait of Nadav Hikry" loading="lazy" />
+      </div>
+      <div class="about__text reveal">
+        <p>
+          I'm Nadav, a senior product designer with more than 10 years of
+          experience across a range of industries and both B2B and B2C
+          products, working end to end: from research and product strategy
+          through to the details of the final interface.
+        </p>
+        <p>
+          Lately my focus is on designing for the AI-native world: products
+          where the hard problems aren't just visual, but about trust,
+          control, and making powerful, unfamiliar technology feel obvious to
+          use. I work AI-native myself, too: not only designing AI products,
+          but building with AI tooling directly, from rapid prototyping to
+          setting up my own workflows.
+        </p>
+        <p>
+          What I care about most is the hard part of the craft: taking
+          something complex and ambiguous and making it feel simple, clear,
+          and genuinely useful.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<footer id="contact" class="contact">
+  <div class="contact__inner">
+    <h2 class="contact__heading reveal">Let's talk.</h2>
+    <div class="contact__links reveal">
+      <a class="contact__link" href="mailto:nadavhikry@gmail.com">
+        <span class="contact__link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/>
+            <polyline points="22 6 12 13 2 6"/>
+          </svg>
+        </span>
+        Email me
+      </a>
+      <a class="contact__link" href="https://www.linkedin.com/in/nadav-hikry-38568662/" target="_blank" rel="noopener">
+        <span class="contact__link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+          </svg>
+        </span>
+        LinkedIn
+      </a>
+    </div>
+    <p class="contact__credit">
+      <svg class="contact__credit-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(36 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(72 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(108 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(144 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(180 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(216 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(252 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(288 12 12)"/>
+        <path d="M12 12 C12.9 8.5 12.6 4.5 12 1.5 C11.4 4.5 11.1 8.5 12 12 Z" transform="rotate(324 12 12)"/>
+      </svg>
+      Designed &amp; built with Claude Code.
+      <span class="contact__credit-sep" aria-hidden="true">|</span>
+      © <span id="year"></span> Nadav Hikry
+    </p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
